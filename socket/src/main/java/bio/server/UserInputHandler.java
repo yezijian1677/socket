@@ -1,6 +1,6 @@
-package BIO.server;
+package bio.server;
 
-import BIO.client.ChatClient;
+import bio.client.ChatClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;

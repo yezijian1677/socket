@@ -1,4 +1,4 @@
-package simpleIO.client;
+package simpleio.client;
 
 import java.io.*;
 import java.net.Socket;

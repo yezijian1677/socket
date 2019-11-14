@@ -1,6 +1,6 @@
-package BIO.server;
+package bio.server;
 
-import BIO.client.ChatHandler;
+import bio.client.ChatHandler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,9 +8,10 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author augenye
@@ -20,12 +21,15 @@ public class ChatServer {
     private final int DEFAULT_PORT = 8888;
     private final String QUIT = "quit";
 
+    //线程池
+    private ExecutorService executorService;
     // 方便接收各个客户端发起的请求
     private ServerSocket serverSocket;
     //端口 ： 输出的writer
     private Map<Integer, Writer> connectedClients;
 
     public ChatServer() {
+        executorService = Executors.newFixedThreadPool(10);
         connectedClients = new ConcurrentHashMap<>();
     }
 
@@ -97,7 +101,8 @@ public class ChatServer {
                 //等待客户端连接
                 Socket socket = serverSocket.accept();
                 // 创建一个handler线程
-                new Thread(new ChatHandler(this, socket)).start();
+                //new Thread(new ChatHandler(this, socket)).start();
+                executorService.execute(new ChatHandler(this, socket));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package simpleIO.server;
+package simpleio.server;
 
 import java.io.*;
 import java.net.ServerSocket;

@@ -1,6 +1,6 @@
-package BIO.client;
+package bio.client;
 
-import BIO.server.UserInputHandler;
+import bio.server.UserInputHandler;
 
 import java.io.*;
 import java.net.Socket;
