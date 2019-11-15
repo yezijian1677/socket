@@ -1,6 +1,4 @@
-package bio.server;
-
-import bio.client.ChatClient;
+package niomodel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
